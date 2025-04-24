@@ -1,55 +1,45 @@
 #include <stdio.h>
 #include <string.h>
 
-int indexOf(char text, char target) {
-    
+int indexOf(char text[], char word[]) {
     int textLength = 0;
-    int targetLength = 0;
+    int wordLength = 0;
 
-    // Считаем длину text
     while (text[textLength] != '\0') {
         textLength++;
     }
 
-    // Считаем длину target
-    while (target[targetLength] != '\0') {
-        targetLength++;
+    while (word[wordLength] != '\0') {
+        wordLength++;
     }
 
-    // Ищем target в text
-    int foundIndex = -1;
-    for (int i = 0; i <= textLength - targetLength; i++) {
+    for (int i = 0; i <= textLength - wordLength; i++) {
         int match = 1;
-        for (int j = 0; j < targetLength; j++) {
-            if (text[i + j] != target[j]) {
+        for (int j = 0; j < wordLength; j++) {
+            if (text[i + j] != word[j]) {
                 match = 0;
                 break;
             }
         }
         if (match == 1) {
-            foundIndex = i;
-            break;
+            return i; 
         }
     }
 
-    if (foundIndex != -1) {
-        printf("Слово \"%s\" найдено на позиции %d\n", target, foundIndex);
+    return -1; 
+}
+
+int main() {
+   
+    char text[] = "the cat sat on the mat";
+    char target[] = "cat";
+    int found = indexOf(text, target);
+
+    if (found != -1) {
+        printf("Слово \"%s\" найдено на позиции %d\n", target, found);
     } else {
         printf("Слово \"%s\" не найдено\n", target);
     }
-    
 
-    return ;
-}
-
-
-
-int main() {
-    char text[] = "the cat sat on the mat";
-    char target[] = "cat";
-    
-    finder_index = indexOf(text[], target[])
-    printf("%c\n", finder_index);
-    
     return 0;
-} 
+}
